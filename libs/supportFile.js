@@ -1,3 +1,5 @@
+'use strict'
+
 var mime = require('mime');
 var path = require('path');
 var fs = require('fs');
@@ -19,6 +21,7 @@ class supportFile {
         res.write(data);
         res.end();
     }
+
 }
 
 module.exports = supportFile
