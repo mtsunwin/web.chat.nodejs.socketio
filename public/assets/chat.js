@@ -2,8 +2,6 @@ var socket = io();
 
 $(document).ready(function () {
     checkNickname();
-    genaratorConversation(true, "ahihi");
-    genaratorConversation(false, "ahihi");
     socket.on("infor", function (data) {
         console.log(data);
         if (data) {
@@ -21,6 +19,7 @@ $(document).ready(function () {
 
 socket.on('conversation_group', function (data) {
     console.log(data);
+    genaratorConversation(false, data);
 });
 
 

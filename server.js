@@ -20,6 +20,7 @@ app.get('/err', function (req, res) {
 // Tạo server, socket và port để lắng nghe
 var server = http.Server(app);
 var io = require('socket.io')(server);
+
 server.listen(3000, function () {
     console.log("server is running in port 3000");
 });
@@ -48,6 +49,6 @@ io.on('connection', function (socket) {
 
     // Chat group
     socket.on('message_group', function (data) {
-        socket.broadcast.emit('conversation_group', data + " server sent");
+        socket.broadcast.emit('conversation_group', mConv.conversation(yourname, data));
     });
 });
