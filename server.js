@@ -40,11 +40,11 @@ io.on('connection', function (socket) {
                 socket.emit("infor", yourname);
             }
         });
-
     });
 
     socket.on('disconnect', function () {
         console.log("server disconnect " + socket.id);
+        socket.emit("waiting", yourname);
     });
 
     // Chat group

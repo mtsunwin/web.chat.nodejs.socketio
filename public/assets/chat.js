@@ -1,9 +1,11 @@
 var socket = io();
 
 $(document).ready(function () {
+
     checkNickname();
+
     socket.on("infor", function (data) {
-        console.log(data);
+        console.log("tmt", data);
         if (data) {
             $('#input_nickname').attr('disabled', 'disabled');
             $('#btn_nickname').attr('disabled', 'disabled');
@@ -13,6 +15,7 @@ $(document).ready(function () {
     });
 
     $('#btn-chat').on('click', function (e) {
+        genaratorConversation(true, $('#btn-input').val());
         socket.emit('message_group', $('#btn-input').val());
     });
 });
@@ -22,9 +25,13 @@ socket.on('conversation_group', function (data) {
     genaratorConversation(false, data);
 });
 
+socket.on('waiting', function (data) {
+    console.log('waiting', data);
+});
 
 // Xử lý nickname
 function checkNickname() {
+
     $('#btn_nickname').click(function (e) {
         let nick = $('#input_nickname').val();
         socket.emit('connection', nick);
@@ -44,12 +51,12 @@ function genaratorConversation(_type, _data) {
                 </span>
                     <div class="chat-body clearfix">
                         <div class="header">
-                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>${_data.time}
+                            <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>
                             </small>
-                            <strong class="pull-right primary-font">${_data.name}</strong>
+                            <strong class="pull-right primary-font">${$('#input_nickname').val()}</strong>
                         </div>
                         <p>
-                            ${_data.conversation}
+                            ${_data}
                         </p>
                     </div>
                 </li>`;

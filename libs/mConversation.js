@@ -16,10 +16,12 @@ class mConversation {
         return {name: _nick, conversation: _conversation, time: getTimeNow()};
     }
 
+
 }
 
 var getTimeNow = () => {
     let date = new Date();
-    return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ${date.getDay()}\\${date.getMonth()+1}\\${date.getFullYear()}`;
+    return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ${date.getDay()}\/${date.getMonth()+1}\/${date.getFullYear()}`;
 }
+
 module.exports = mConversation;
